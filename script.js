@@ -21,7 +21,7 @@ cells.forEach(item => item.addEventListener('mouseenter', () => {
 
 cells.forEach(item => item.addEventListener('mouseleave', () => {
     item.style.backgroundColor = '';
-    item.style.transitionDuration = '1.5s';
+    item.style.transitionDuration = '3s';
 })) 
 
 
@@ -29,7 +29,6 @@ const button = document.createElement('button');
 const body = document.querySelector('body');
 body.insertBefore(button, gridContainer);
 
-button.setAttribute('style', 'width: 100px; height: 30px; border: 1px solid black; margin: 20px;');
 button.textContent = 'Change grid';
 
 function changeGrid(userChoice) {
@@ -53,7 +52,7 @@ function changeGrid(userChoice) {
 
     modifiedCells.forEach(cellItem => cellItem.addEventListener('mouseleave', () => {
         cellItem.style.backgroundColor = '';
-        cellItem.style.transitionDuration = '1.5s';
+        cellItem.style.transitionDuration = '3s';
     })) 
 
     gridContainer.style.gridTemplateRows = `repeat(${totalCells / userChoice}, 1fr)`;
