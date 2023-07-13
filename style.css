@@ -17,8 +17,8 @@ body {
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
     background-color: #2a2b2c;
-    width: 80vw;
-    height: 90vh;
+    width: 500px;
+    height: 500px;
     margin-bottom: 20px;
     border: 1px solid white;
     border-radius: 2px;
@@ -39,8 +39,14 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.title:hover {
+    background-color: white;
+    color: black;
+    padding: 0 5px;
+}
+
 button {
-    background-color: rgb(39, 26, 211);
+    background-color: rgb(72, 64, 194);
     border-radius: 5px;
     color: aliceblue;
     width: 200px;
@@ -54,5 +60,6 @@ button:hover {
     background-color: white;
     color: black;
     cursor: pointer;
+    border: 1px solid black;
 }
 
