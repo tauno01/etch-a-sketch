@@ -1,3 +1,11 @@
+function randomRGBColor() {
+    const randomRed = Math.floor(Math.random() * 256);
+    const randomGreen = Math.floor(Math.random() * 256);
+    const randomBlue = Math.floor(Math.random() * 256);
+    return `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
+}
+
+
 const gridContainer = document.getElementById("container");
 
 for (let i = 0; i < 256; i++) {
@@ -8,7 +16,7 @@ for (let i = 0; i < 256; i++) {
 
 const cells = Array.from(document.querySelectorAll('.cell'));
 cells.forEach(item => item.addEventListener('mouseenter', () => {
-    item.style.backgroundColor = 'white';
+    item.style.backgroundColor = randomRGBColor();
 }))
 
 cells.forEach(item => item.addEventListener('mouseleave', () => {
@@ -40,7 +48,7 @@ function changeGrid(userChoice) {
 
     const modifiedCells = Array.from(document.querySelectorAll('.cell'));
     modifiedCells.forEach(cellItem => cellItem.addEventListener('mouseenter', () => {
-        cellItem.style.backgroundColor = 'white';
+        cellItem.style.backgroundColor = randomRGBColor();
     }))
 
     modifiedCells.forEach(cellItem => cellItem.addEventListener('mouseleave', () => {
