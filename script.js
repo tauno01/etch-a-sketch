@@ -15,14 +15,12 @@ for (let i = 0; i < 256; i++) {
 }
 
 const cells = Array.from(document.querySelectorAll('.cell'));
-cells.forEach(item => item.addEventListener('mouseenter', () => {
+cells.forEach(item => item.addEventListener('mousedown', () => {
     item.style.backgroundColor = randomRGBColor();
+    cells.forEach(itemtwo => itemtwo.addEventListener('mouseenter', () => {
+        itemtwo.style.backgroundColor = randomRGBColor();
+    }))
 }))
-
-cells.forEach(item => item.addEventListener('mouseleave', () => {
-    item.style.backgroundColor = '';
-    item.style.transitionDuration = '3s';
-})) 
 
 
 const button = document.createElement('button');
@@ -46,14 +44,12 @@ function changeGrid(userChoice) {
     }
 
     const modifiedCells = Array.from(document.querySelectorAll('.cell'));
-    modifiedCells.forEach(cellItem => cellItem.addEventListener('mouseenter', () => {
+    modifiedCells.forEach(cellItem => cellItem.addEventListener('mousedown', () => {
         cellItem.style.backgroundColor = randomRGBColor();
+        modifiedCells.forEach(cellItemTwo => cellItemTwo.addEventListener('mouseenter', () => {
+            cellItemTwo.style.backgroundColor = randomRGBColor();
+        }))
     }))
-
-    modifiedCells.forEach(cellItem => cellItem.addEventListener('mouseleave', () => {
-        cellItem.style.backgroundColor = '';
-        cellItem.style.transitionDuration = '3s';
-    })) 
 
     gridContainer.style.gridTemplateRows = `repeat(${totalCells / userChoice}, 1fr)`;
     gridContainer.style.gridTemplateColumns = `repeat(${totalCells / userChoice}, 1fr)`;
