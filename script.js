@@ -5,8 +5,16 @@ function randomRGBColor() {
     return `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
 }
 
+const button = document.createElement('button');
+const body = document.querySelector('body');
+
+button.textContent = 'Change grid';
 
 const gridContainer = document.getElementById("container");
+
+body.insertBefore(button, gridContainer);
+
+// Loop 256 div cells
 
 for (let i = 0; i < 256; i++) {
     const cell = document.createElement("div");
@@ -14,20 +22,31 @@ for (let i = 0; i < 256; i++) {
     gridContainer.appendChild(cell);
 }
 
+// Event listener for changing the cell background color
+
 const cells = Array.from(document.querySelectorAll('.cell'));
-cells.forEach(item => item.addEventListener('mousedown', () => {
-    item.style.backgroundColor = randomRGBColor();
-    cells.forEach(itemtwo => itemtwo.addEventListener('mouseenter', () => {
-        itemtwo.style.backgroundColor = randomRGBColor();
-    }))
-}))
 
+let isMouseDown = false;
 
-const button = document.createElement('button');
-const body = document.querySelector('body');
-body.insertBefore(button, gridContainer);
+function colorChange(e) {
+   if (isMouseDown) {
+    const cell = e.target;
+    const randColor = randomRGBColor();
+    cell.style.backgroundColor = randColor;
+   }
+}
 
-button.textContent = 'Change grid';
+cells.forEach(cell => {
+    cell.addEventListener('mousedown', () => {
+      isMouseDown = true;
+    });
+    cell.addEventListener('mouseup', () => {
+      isMouseDown = false;
+    });
+    cell.addEventListener('mouseenter', colorChange);
+  });
+
+// Change the grid depending on user's input
 
 function changeGrid(userChoice) {
 
@@ -43,18 +62,24 @@ function changeGrid(userChoice) {
 
     }
 
-    const modifiedCells = Array.from(document.querySelectorAll('.cell'));
-    modifiedCells.forEach(cellItem => cellItem.addEventListener('mousedown', () => {
-        cellItem.style.backgroundColor = randomRGBColor();
-        modifiedCells.forEach(cellItemTwo => cellItemTwo.addEventListener('mouseenter', () => {
-            cellItemTwo.style.backgroundColor = randomRGBColor();
-        }))
-    }))
-
     gridContainer.style.gridTemplateRows = `repeat(${totalCells / userChoice}, 1fr)`;
     gridContainer.style.gridTemplateColumns = `repeat(${totalCells / userChoice}, 1fr)`;
 
+    const modifiedCells = Array.from(document.querySelectorAll('.cell'));
+
+    modifiedCells.forEach(cell => {
+        cell.addEventListener('mousedown', () => {
+          isMouseDown = true;
+        });
+        cell.addEventListener('mouseup', () => {
+          isMouseDown = false;
+        });
+        cell.addEventListener('mouseenter', colorChange);
+      });
+
 }
+
+// Event listener for button
 
 button.addEventListener('click', () => {
 
@@ -67,4 +92,3 @@ button.addEventListener('click', () => {
     }
 
 })
-
